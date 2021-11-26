@@ -77,8 +77,6 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltAnnotationProcessor"
 
-
-
     // Glide
     def glideVersion = "4.12.0"
     def glidePaletteVersion = "2.1.2"
@@ -86,5 +84,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation "com.github.florent37:glidepalette:$glidePaletteVersion"
     kapt "com.github.bumptech.glide:compiler:$glideAnnotationProcessor"
+
+    // Uniflow
+    def uniflow_version = "1.0.10"
+    implementation "org.uniflow-kt:uniflow-android:$uniflow_version"
 
 }
