@@ -5,11 +5,11 @@ import com.kl3jvi.crispytask.domain.model.PokemonResponse
 import javax.inject.Inject
 
 class PokemonApiClient @Inject constructor(
-    private val pokedexService: PokemonService
+    private val pokemonService: PokemonService
 ) {
 
     suspend fun fetchPokemonList(): List<PokemonResponse> =
-        pokedexService.fetchPokemonList(
+        pokemonService.fetchPokemonList(
             limit = SIZE,
             offset = SIZE
         )
@@ -17,7 +17,7 @@ class PokemonApiClient @Inject constructor(
     suspend fun fetchPokemonInfo(
         name: String
     ): List<PokemonInfo> =
-        pokedexService.fetchPokemonInfo(
+        pokemonService.fetchPokemonInfo(
             name = name
         )
 

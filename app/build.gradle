@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id "dagger.hilt.android.plugin"
-    id 'kotlin-parcelize'
 }
 
 android {
@@ -69,7 +68,7 @@ dependencies {
     // Moshi
     def moshiVersion = "1.12.0"
     def moshiAnnotationProcessor = "1.11.0"
-    implementation "com.squareup.moshi:moshi:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiAnnotationProcessor"
 
     // Hilt DI
