@@ -69,13 +69,15 @@ dependencies {
     def moshiVersion = "1.12.0"
     def moshiAnnotationProcessor = "1.11.0"
     implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
-    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiAnnotationProcessor"
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiAnnotationProcessor")
 
     // Hilt DI
     def hiltVersion = "2.40"
     def hiltAnnotationProcessor = "2.38.1"
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$hiltAnnotationProcessor"
+
+
 
     // Glide
     def glideVersion = "4.12.0"
