@@ -33,7 +33,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providePokemonClient(pokedexService: PokemonService): PokemonApiClient {
-        return PokemonApiClient(pokedexService)
+    fun providePokemonClient(pokemonService: PokemonService): PokemonApiClient {
+        return PokemonApiClient(pokemonService)
     }
 }
