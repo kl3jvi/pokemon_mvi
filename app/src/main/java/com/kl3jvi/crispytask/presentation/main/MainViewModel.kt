@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.ui.main
+package com.kl3jvi.crispytask.presentation.main
 
 import androidx.lifecycle.ViewModel
 

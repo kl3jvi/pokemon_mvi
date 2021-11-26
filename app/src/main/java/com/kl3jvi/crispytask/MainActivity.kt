@@ -2,7 +2,7 @@ package com.kl3jvi.crispytask
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.kl3jvi.crispytask.ui.main.MainFragment
+import com.kl3jvi.crispytask.presentation.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

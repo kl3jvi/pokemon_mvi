@@ -1,6 +1,5 @@
-package com.kl3jvi.crispytask.ui.main
+package com.kl3jvi.crispytask.presentation.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
