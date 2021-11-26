@@ -2,6 +2,7 @@ package com.kl3jvi.crispytask.domain.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import io.uniflow.core.flow.data.UIState
 import kotlin.random.Random
 
 @JsonClass(generateAdapter = true)
@@ -12,7 +13,7 @@ data class PokemonInfo(
     @field:Json(name = "weight") val weight: Int,
     @field:Json(name = "base_experience") val experience: Int,
     @field:Json(name = "types") val types: List<TypeResponse>,
-) {
+): UIState() {
 
     fun getIdString(): String = String.format("#%03d", id)
     fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
