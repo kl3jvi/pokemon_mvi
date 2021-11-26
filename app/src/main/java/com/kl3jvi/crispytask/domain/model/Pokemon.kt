@@ -1,6 +1,7 @@
 package com.kl3jvi.crispytask.domain.model
 
 import android.os.Parcelable
+import com.kl3jvi.crispytask.domain.utils.Constants.POKEMON_IMAGE_URL
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
@@ -15,6 +16,6 @@ data class Pokemon(
 
     fun getImageUrl(): String {
         val index = url.split("/".toRegex()).dropLast(1).last()
-        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$index.png"
+        return "$POKEMON_IMAGE_URL/$index.png"
     }
 }
