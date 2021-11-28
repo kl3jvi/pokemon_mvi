@@ -21,19 +21,20 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener { view ->
-                binding.pokemonInfo?.name?.let { nameField->
-                    navigateToDetails(nameField, view)
+                binding.pokemon?.let { pokemonDetails ->
+                    navigateToDetails(pokemonDetails, view)
                 }
             }
         }
 
-        private fun navigateToDetails(pokemonName: String, view: View) {
-            val direction = MainFragmentDirections.actionMainFragmentToDetailsFragment(pokemonName)
+        private fun navigateToDetails(pokemon: Pokemon, view: View) {
+            val direction =
+                MainFragmentDirections.actionMainFragmentToDetailsFragment(pokemon)
             view.findNavController().navigate(direction)
         }
 
         fun bindPokemon(pokemon: Pokemon) {
-            binding.pokemonInfo = pokemon
+            binding.pokemon = pokemon
             binding.executePendingBindings()
         }
     }

@@ -11,4 +11,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="card_background">#424242</color>
+
+    <color name="chipBg">#9F422A</color>
 </resources>

@@ -9,9 +9,6 @@ import javax.inject.Inject
 class DetailsViewModel @Inject constructor(
     private val repo: DetailsRepository
 ) : AndroidDataFlow() {
-
-
-    // Method with return type to get Name for adapter :)
     fun updatePokemonName(name: String) {
         getPokemonInfo(name)
     }

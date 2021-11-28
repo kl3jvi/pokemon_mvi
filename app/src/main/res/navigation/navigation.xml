@@ -30,7 +30,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <argument
-            android:name="pokemonName"
-            app:argType="string" />
+            android:name="pokemon"
+            app:argType="com.kl3jvi.crispytask.data.model.Pokemon" />
     </fragment>
 </navigation>

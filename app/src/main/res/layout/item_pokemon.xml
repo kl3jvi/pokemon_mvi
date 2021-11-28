@@ -8,11 +8,8 @@
             name="clickListener"
             type="android.view.View.OnClickListener"/>
         <variable
-            name="pokemonInfo"
+            name="pokemon"
             type="com.kl3jvi.crispytask.data.model.Pokemon" />
-        <variable
-            name="viewModel"
-            type="com.kl3jvi.crispytask.ui.details.DetailsViewModel" />
     </data>
 
 
@@ -41,7 +38,7 @@
                 android:layout_height="120dp"
                 android:layout_margin="20dp"
                 android:scaleType="center"
-                app:image="@{pokemonInfo.imageUrl}"
+                app:image="@{pokemon.imageUrl}"
                 app:placeholder="@{@drawable/ic_no_image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +56,7 @@
                 android:padding="12dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:text="@{pokemonInfo.name}"
+                android:text="@{pokemon.name}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
