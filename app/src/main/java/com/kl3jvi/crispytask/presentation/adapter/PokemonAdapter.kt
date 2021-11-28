@@ -3,20 +3,16 @@ package com.kl3jvi.crispytask.presentation.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kl3jvi.crispytask.data.model.Pokemon
 import com.kl3jvi.crispytask.databinding.ItemPokemonBinding
-import com.kl3jvi.crispytask.presentation.main.MainFragment
 import com.kl3jvi.crispytask.presentation.main.MainFragmentDirections
 
 
-class PokemonAdapter(
-    private val fragment: Fragment
-) : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
+class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
     PokemonDiffCallback()
 ) {
 
@@ -25,15 +21,15 @@ class PokemonAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener { view ->
-                navigateToDetails(view)
+                binding.pokemonInfo?.name?.let { nameField->
+                    navigateToDetails(nameField, view)
+                }
             }
         }
 
-        private fun navigateToDetails(view: View) {
-            if (fragment is MainFragment) {
-                val direction = MainFragmentDirections.actionMainFragmentToDetailsFragment()
-                view.findNavController().navigate(direction)
-            }
+        private fun navigateToDetails(pokemonName: String, view: View) {
+            val direction = MainFragmentDirections.actionMainFragmentToDetailsFragment(pokemonName)
+            view.findNavController().navigate(direction)
         }
 
         fun bindPokemon(pokemon: Pokemon) {
@@ -43,15 +39,17 @@ class PokemonAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-        val binding: ItemPokemonBinding =
-            ItemPokemonBinding.inflate(LayoutInflater.from(fragment.context), parent, false)
+        val binding: ItemPokemonBinding = ItemPokemonBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return PokemonViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) =
         holder.bindPokemon(getItem(position))
 }
-
 
 private class PokemonDiffCallback : DiffUtil.ItemCallback<Pokemon>() {
 

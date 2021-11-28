@@ -10,6 +10,9 @@
         <variable
             name="pokemonInfo"
             type="com.kl3jvi.crispytask.data.model.Pokemon" />
+        <variable
+            name="viewModel"
+            type="com.kl3jvi.crispytask.presentation.details.DetailsViewModel" />
     </data>
 
 

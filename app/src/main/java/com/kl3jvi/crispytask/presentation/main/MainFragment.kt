@@ -8,6 +8,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.kl3jvi.crispytask.data.model.Pokemon
 import com.kl3jvi.crispytask.data.model.PokemonResponse
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
 import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
@@ -31,26 +32,33 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PokemonAdapter(this)
+        adapter = PokemonAdapter()
 
         onStates(viewModel) { state ->
             when (state) {
                 is PokemonResponse -> {
                     val pokemonList = state.results
-                    binding.apply {
-                        recyclerView.adapter = adapter
-                        progressBar.visibility = GONE
-                        adapter.submitList(pokemonList)
-                    }
+                    showPokemons(pokemonList)
                 }
                 else -> {
-                    binding.apply {
-                        recyclerView.visibility = GONE
-                        progressBar.visibility = VISIBLE
-                    }
+                    pokemonsAreLoading()
                 }
-
             }
+        }
+    }
+
+    private fun showPokemons(pokemonList: List<Pokemon>) {
+        binding.apply {
+            recyclerView.adapter = adapter
+            progressBar.visibility = GONE
+            adapter.submitList(pokemonList)
+        }
+    }
+
+    private fun pokemonsAreLoading() {
+        binding.apply {
+            recyclerView.visibility = GONE
+            progressBar.visibility = VISIBLE
         }
     }
 }
