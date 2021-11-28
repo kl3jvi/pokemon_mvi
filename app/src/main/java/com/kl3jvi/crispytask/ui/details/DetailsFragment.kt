@@ -54,7 +54,6 @@ class DetailsFragment : Fragment() {
     }
 
     private fun buildPowerList(pInfo: PokemonInfo) {
-
         val powerList = pInfo.types
         powerList.forEach {
             binding.chipGroup.removeAllViews()
@@ -65,6 +64,4 @@ class DetailsFragment : Fragment() {
             binding.chipGroup.addView(chip)
         }
     }
-
-
 }
