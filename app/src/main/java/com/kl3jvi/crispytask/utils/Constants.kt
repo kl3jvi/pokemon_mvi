@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.domain.utils
+package com.kl3jvi.crispytask.utils
 
 object Constants {
     const val BASE_URL = "https://pokeapi.co/api/v2/"

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="pokemonInfo"
-            type="com.kl3jvi.crispytask.domain.model.Pokemon" />
+            type="com.kl3jvi.crispytask.data.model.Pokemon" />
     </data>
 
 
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foreground="?attr/selectableItemBackground"
-            tools:background="@color/card_background"
+            android:background="@color/card_background"
             tools:ignore="UnusedAttribute">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -34,7 +34,7 @@
                 android:layout_height="120dp"
                 android:layout_margin="20dp"
                 android:scaleType="center"
-                app:image="@{pokemonInfo.url}"
+                app:image="@{pokemonInfo.imageUrl}"
                 app:placeholder="@{@drawable/ic_no_image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,7 @@
                 android:padding="12dp"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:text="@{pokemonInfo.name}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.domain.model
+package com.kl3jvi.crispytask.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

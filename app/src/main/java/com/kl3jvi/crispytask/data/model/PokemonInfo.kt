@@ -1,9 +1,8 @@
-package com.kl3jvi.crispytask.domain.model
+package com.kl3jvi.crispytask.data.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import io.uniflow.core.flow.data.UIState
-import kotlin.random.Random
 
 @JsonClass(generateAdapter = true)
 data class PokemonInfo(

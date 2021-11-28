@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
-import com.kl3jvi.crispytask.domain.model.PokemonResponse
+import com.kl3jvi.crispytask.data.model.PokemonResponse
 import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
@@ -41,7 +41,7 @@ class MainFragment : Fragment() {
             Log.e("State:----", state.toString())
             when (state) {
                 is PokemonResponse -> {
-                    val adapter = PokemonAdapter(this)
+                    val adapter = PokemonAdapter(this,state.results)
                     binding.recyclerView.adapter = adapter
                     state.results.forEach {
                         binding.message.append("${it.name} \n")

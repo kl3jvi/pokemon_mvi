@@ -3,17 +3,15 @@ package com.kl3jvi.crispytask.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.kl3jvi.crispytask.data.model.Pokemon
 import com.kl3jvi.crispytask.databinding.ItemPokemonBinding
-import com.kl3jvi.crispytask.domain.model.Pokemon
 
 
 class PokemonAdapter(
-    private val fragment: Fragment
-//    val action: (items: MutableList<Pokemon>, changed: Pokemon, checked: Boolean) -> Unit
-) : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(DiffCallback()) {
+    private val fragment: Fragment,
+    private val list: List<Pokemon>
+) : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
     inner class PokemonViewHolder constructor(
         private val binding: ItemPokemonBinding
@@ -32,22 +30,7 @@ class PokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) =
-        holder.bindPokemon(getItem(position))
+        holder.bindPokemon(list[position])
 
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
-}
-
-/**
- * Increase recycler view performance using implementation of diffutil
- * algorithm for recyclerview
- */
-private class DiffCallback : DiffUtil.ItemCallback<Pokemon>() {
-
-    override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon) =
-        oldItem.name == newItem.name
-
-    override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon) =
-        oldItem == newItem
+    override fun getItemCount(): Int = list.size
 }

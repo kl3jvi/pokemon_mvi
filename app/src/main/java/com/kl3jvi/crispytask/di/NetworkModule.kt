@@ -3,7 +3,7 @@ package com.kl3jvi.crispytask.di
 
 import com.kl3jvi.crispytask.data.network.PokemonApiClient
 import com.kl3jvi.crispytask.data.network.PokemonService
-import com.kl3jvi.crispytask.domain.utils.Constants.BASE_URL
+import com.kl3jvi.crispytask.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

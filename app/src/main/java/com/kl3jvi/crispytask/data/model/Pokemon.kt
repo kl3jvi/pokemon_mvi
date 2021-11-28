@@ -1,9 +1,8 @@
-package com.kl3jvi.crispytask.domain.model
+package com.kl3jvi.crispytask.data.model
 
-import com.kl3jvi.crispytask.domain.utils.Constants.POKEMON_IMAGE_URL
+import com.kl3jvi.crispytask.utils.Constants.POKEMON_IMAGE_URL
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import io.uniflow.core.flow.data.UIState
 
 @JsonClass(generateAdapter = true)
 data class Pokemon(

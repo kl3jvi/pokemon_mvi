@@ -1,7 +1,7 @@
 package com.kl3jvi.crispytask.data.network
 
-import com.kl3jvi.crispytask.domain.model.PokemonInfo
-import com.kl3jvi.crispytask.domain.model.PokemonResponse
+import com.kl3jvi.crispytask.data.model.PokemonInfo
+import com.kl3jvi.crispytask.data.model.PokemonResponse
 import javax.inject.Inject
 
 class PokemonApiClient @Inject constructor(
