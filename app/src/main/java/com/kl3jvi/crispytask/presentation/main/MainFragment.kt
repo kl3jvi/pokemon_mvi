@@ -17,16 +17,10 @@ import io.uniflow.android.livedata.onStates
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MainFragment()
-    }
-
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: MainViewModel by viewModels()
-
-
+    private lateinit var adapter: PokemonAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,11 +31,12 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter = PokemonAdapter(this)
+
         onStates(viewModel) { state ->
             when (state) {
                 is PokemonResponse -> {
                     val pokemonList = state.results
-                    val adapter = PokemonAdapter(this)
                     binding.apply {
                         recyclerView.adapter = adapter
                         progressBar.visibility = GONE
@@ -54,6 +49,7 @@ class MainFragment : Fragment() {
                         progressBar.visibility = VISIBLE
                     }
                 }
+
             }
         }
     }

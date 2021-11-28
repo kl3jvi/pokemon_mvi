@@ -1,6 +1,7 @@
 package com.kl3jvi.crispytask.bindings
 
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -8,7 +9,7 @@ import com.kl3jvi.crispytask.R
 
 object ViewBinding {
     /**
-     * Extensions functions for image databiniding with GLIDE
+     * Iimage data biniding with GLIDE
      */
     @JvmStatic
     @BindingAdapter("image", "placeholder")
@@ -21,4 +22,19 @@ object ViewBinding {
             image.setImageDrawable(placeHolder)
         }
     }
+
+    /**
+     * Visibility binding
+     */
+    @JvmStatic
+    @BindingAdapter("gone")
+    fun bindGone(view: View, shouldBeGone: Boolean) {
+        view.visibility = if (shouldBeGone) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+    }
+
+
 }

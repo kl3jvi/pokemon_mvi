@@ -7,7 +7,6 @@
         <variable
             name="clickListener"
             type="android.view.View.OnClickListener"/>
-
         <variable
             name="pokemonInfo"
             type="com.kl3jvi.crispytask.data.model.Pokemon" />
