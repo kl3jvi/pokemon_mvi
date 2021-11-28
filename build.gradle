@@ -6,10 +6,13 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.30'
 
         // Hilt
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.40"
+
+        def nav_version = "2.3.3"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 

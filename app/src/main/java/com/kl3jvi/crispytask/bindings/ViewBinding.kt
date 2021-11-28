@@ -20,7 +20,5 @@ object ViewBinding {
         } else {
             image.setImageDrawable(placeHolder)
         }
-
-
     }
 }

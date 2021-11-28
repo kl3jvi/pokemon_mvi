@@ -1,15 +1,15 @@
 package com.kl3jvi.crispytask.presentation.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.kl3jvi.crispytask.databinding.MainFragmentBinding
 import com.kl3jvi.crispytask.data.model.PokemonResponse
+import com.kl3jvi.crispytask.databinding.MainFragmentBinding
 import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
@@ -38,17 +38,20 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onStates(viewModel) { state ->
-            Log.e("State:----", state.toString())
             when (state) {
                 is PokemonResponse -> {
-                    val adapter = PokemonAdapter(this,state.results)
-                    binding.recyclerView.adapter = adapter
-                    state.results.forEach {
-                        binding.message.append("${it.name} \n")
+                    val pokemonList = state.results
+                    val adapter = PokemonAdapter(this, pokemonList)
+                    binding.apply {
+                        recyclerView.adapter = adapter
+                        progressBar.visibility = GONE
                     }
                 }
                 else -> {
-                    Toast.makeText(requireContext(), "Loading pokemons", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        recyclerView.visibility = GONE
+                        progressBar.visibility = VISIBLE
+                    }
                 }
             }
         }

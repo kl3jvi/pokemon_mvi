@@ -1,11 +1,15 @@
 package com.kl3jvi.crispytask.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.kl3jvi.crispytask.data.model.Pokemon
 import com.kl3jvi.crispytask.databinding.ItemPokemonBinding
+import com.kl3jvi.crispytask.presentation.main.MainFragment
+import com.kl3jvi.crispytask.presentation.main.MainFragmentDirections
 
 
 class PokemonAdapter(
@@ -16,6 +20,20 @@ class PokemonAdapter(
     inner class PokemonViewHolder constructor(
         private val binding: ItemPokemonBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.setClickListener { view ->
+                navigateToDetails(view)
+            }
+        }
+
+        private fun navigateToDetails(view: View) {
+            if (fragment is MainFragment) {
+                val direction = MainFragmentDirections.actionMainFragmentToDetailsFragment()
+                view.findNavController().navigate(direction)
+            }
+
+        }
 
         fun bindPokemon(pokemon: Pokemon) {
             binding.pokemonInfo = pokemon
