@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.kl3jvi.crispytask.presentation.main.MainFragment"
-        android:label="main_fragment"
+        android:label="@string/home_label"
         tools:layout="@layout/main_fragment">
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.kl3jvi.crispytask.presentation.details.DetailsFragment"
-        android:label="details_fragment"
+        android:label="@string/details_label"
         tools:layout="@layout/details_fragment">
         <action
             android:id="@+id/placeholderID"

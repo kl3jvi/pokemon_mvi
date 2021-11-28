@@ -41,10 +41,11 @@ class MainFragment : Fragment() {
             when (state) {
                 is PokemonResponse -> {
                     val pokemonList = state.results
-                    val adapter = PokemonAdapter(this, pokemonList)
+                    val adapter = PokemonAdapter(this)
                     binding.apply {
                         recyclerView.adapter = adapter
                         progressBar.visibility = GONE
+                        adapter.submitList(pokemonList)
                     }
                 }
                 else -> {
