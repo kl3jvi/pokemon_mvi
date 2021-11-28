@@ -14,7 +14,7 @@ class PokemonApiClient @Inject constructor(
             offset = SIZE
         )
 
-    suspend fun fetchPokemonInfo(
+    suspend fun fetchPokemonDetails(
         name: String
     ): PokemonInfo =
         pokemonService.fetchPokemonInfo(

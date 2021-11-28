@@ -1,15 +1,18 @@
 package com.kl3jvi.crispytask.presentation.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
+import com.kl3jvi.crispytask.domain.model.PokemonResponse
+import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
-import io.uniflow.core.flow.data.UIState
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -35,15 +38,17 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         onStates(viewModel) { state ->
+            Log.e("State:----", state.toString())
             when (state) {
-                is UIState.Success -> {
-
+                is PokemonResponse -> {
+                    val adapter = PokemonAdapter(this)
+                    binding.recyclerView.adapter = adapter
+                    state.results.forEach {
+                        binding.message.append("${it.name} \n")
+                    }
                 }
-                is UIState.Empty -> {
-
-                }
-                is UIState.Loading -> {
-
+                else -> {
+                    Toast.makeText(requireContext(), "Loading pokemons", Toast.LENGTH_SHORT).show()
                 }
             }
         }

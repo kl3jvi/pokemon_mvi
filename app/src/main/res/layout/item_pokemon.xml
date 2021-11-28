@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!--        <variable-->
-        <!--            name="pokemonInfo"-->
-        <!--            type="com.kl3jvi.crispytask.domain.model.Pokemon" />-->
+        <variable
+            name="pokemonInfo"
+            type="com.kl3jvi.crispytask.domain.model.Pokemon" />
     </data>
 
 
@@ -34,6 +34,8 @@
                 android:layout_height="120dp"
                 android:layout_margin="20dp"
                 android:scaleType="center"
+                app:image="@{pokemonInfo.url}"
+                app:placeholder="@{@drawable/ic_no_image}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
