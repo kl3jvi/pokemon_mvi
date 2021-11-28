@@ -8,7 +8,7 @@ class PokemonApiClient @Inject constructor(
     private val pokemonService: PokemonService
 ) {
 
-    suspend fun fetchPokemonList(): List<PokemonResponse> =
+    suspend fun fetchPokemonList(): PokemonResponse =
         pokemonService.fetchPokemonList(
             limit = SIZE,
             offset = SIZE
@@ -16,7 +16,7 @@ class PokemonApiClient @Inject constructor(
 
     suspend fun fetchPokemonInfo(
         name: String
-    ): List<PokemonInfo> =
+    ): PokemonInfo =
         pokemonService.fetchPokemonInfo(
             name = name
         )
