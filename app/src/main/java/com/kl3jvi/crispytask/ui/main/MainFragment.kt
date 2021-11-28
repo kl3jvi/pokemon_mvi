@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.presentation.main
+package com.kl3jvi.crispytask.ui.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import com.kl3jvi.crispytask.data.model.Pokemon
 import com.kl3jvi.crispytask.data.model.PokemonResponse
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
-import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
+import com.kl3jvi.crispytask.ui.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
 

@@ -2,4 +2,6 @@
     <string name="app_name">CrispyTask</string>
     <string name="details_label">Pokemon Details</string>
     <string name="home_label">Pokemon List</string>
+    <string name="name">Name</string>
+    <string name="skills">Skills</string>
 </resources>

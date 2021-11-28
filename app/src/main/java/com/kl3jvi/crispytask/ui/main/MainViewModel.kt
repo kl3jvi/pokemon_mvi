@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.presentation.main
+package com.kl3jvi.crispytask.ui.main
 
 
 import com.kl3jvi.crispytask.data.repository.MainRepository

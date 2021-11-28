@@ -12,7 +12,7 @@
             type="com.kl3jvi.crispytask.data.model.Pokemon" />
         <variable
             name="viewModel"
-            type="com.kl3jvi.crispytask.presentation.details.DetailsViewModel" />
+            type="com.kl3jvi.crispytask.ui.details.DetailsViewModel" />
     </data>
 
 

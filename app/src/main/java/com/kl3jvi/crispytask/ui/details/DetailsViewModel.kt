@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.presentation.details
+package com.kl3jvi.crispytask.ui.details
 
 import com.kl3jvi.crispytask.data.repository.DetailsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,12 +10,9 @@ class DetailsViewModel @Inject constructor(
     private val repo: DetailsRepository
 ) : AndroidDataFlow() {
 
-    private var _name: String = ""
-    val pokemonName get() = _name
 
     // Method with return type to get Name for adapter :)
     fun updatePokemonName(name: String) {
-        _name = name
         getPokemonInfo(name)
     }
 

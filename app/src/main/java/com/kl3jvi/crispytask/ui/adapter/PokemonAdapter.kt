@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.presentation.adapter
+package com.kl3jvi.crispytask.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kl3jvi.crispytask.data.model.Pokemon
 import com.kl3jvi.crispytask.databinding.ItemPokemonBinding
-import com.kl3jvi.crispytask.presentation.main.MainFragmentDirections
+import com.kl3jvi.crispytask.ui.main.MainFragmentDirections
 
 
 class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
