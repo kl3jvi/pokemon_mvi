@@ -2,7 +2,6 @@ package com.kl3jvi.crispytask.data.network
 
 import com.kl3jvi.crispytask.data.model.PokemonDto
 import com.kl3jvi.crispytask.data.model.PokemonInfoDto
-import com.kl3jvi.crispytask.data.model.PokemonResponseDto
 import com.kl3jvi.crispytask.utils.Constants.POKEMON_INFO
 import com.kl3jvi.crispytask.utils.Constants.POKEMON_LIST
 import retrofit2.http.GET

@@ -1,36 +1,37 @@
 package com.kl3jvi.crispytask.presentation.details
 
-import android.util.Log
-import com.kl3jvi.crispytask.data.model.PokemonInfoDto
+import androidx.lifecycle.viewModelScope
+import com.kl3jvi.crispytask.domain.use_case.get_pokemon.GetPokemonUseCase
+import com.kl3jvi.crispytask.utils.Response
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.uniflow.android.AndroidDataFlow
-import io.uniflow.core.flow.data.UIState
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val pokemonDetailsRepository: PokemonDetailsRepository
+    private val getPokemonUseCase: GetPokemonUseCase
 ) : AndroidDataFlow() {
+
+
     fun updatePokemonName(name: String) {
         getPokemonInfo(name)
     }
 
     private fun getPokemonInfo(pokemonName: String) = action {
-        try {
-            val pokemonResponse =
-                pokemonDetailsRepository.getPokemonDetails(
-                    pokemonName = pokemonName,
-                    onError = { error -> Log.e("Error", error ?: "") })
-            setState { TestStates.ResponseState(pokemonResponse) }
-        } catch (e: Exception) {
-            setState { it }
-        }
+        getPokemonUseCase(pokemonName = pokemonName).onEach { result ->
+            when (result) {
+                is Response.Success -> setState { PokemonDetailsState.PokemonRetrieved(result.data) }
+                is Response.Error -> setState {
+                    PokemonDetailsState.PokemonRetrievedError(
+                        result.message ?: "An unexpected error occurred"
+                    )
+                }
+                is Response.Loading -> setState { PokemonDetailsState.PokemonIsLoading }
+            }
+        }.launchIn(viewModelScope)
     }
 
-    open class TestStates : UIState(){
 
-        object LoadingWeather : TestStates()
-        data class ResponseState(val flow: Flow<PokemonInfoDto>) : TestStates()
-    }
 }

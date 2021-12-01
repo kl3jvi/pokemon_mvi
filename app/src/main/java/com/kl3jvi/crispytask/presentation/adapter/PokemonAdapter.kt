@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kl3jvi.crispytask.data.model.PokemonDto
 import com.kl3jvi.crispytask.databinding.ItemPokemonBinding
+import com.kl3jvi.crispytask.domain.model.Pokemon
 import com.kl3jvi.crispytask.presentation.main.MainFragmentDirections
 
 
-class PokemonAdapter : ListAdapter<PokemonDto, PokemonAdapter.PokemonViewHolder>(
+class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
     PokemonDiffCallback()
 ) {
 
@@ -27,13 +28,13 @@ class PokemonAdapter : ListAdapter<PokemonDto, PokemonAdapter.PokemonViewHolder>
             }
         }
 
-        private fun navigateToDetails(pokemonDto: PokemonDto, view: View) {
+        private fun navigateToDetails(pokemonDto: Pokemon, view: View) {
             val direction =
                 MainFragmentDirections.actionMainFragmentToDetailsFragment(pokemonDto)
             view.findNavController().navigate(direction)
         }
 
-        fun bindPokemon(pokemonDto: PokemonDto) {
+        fun bindPokemon(pokemonDto: Pokemon) {
             binding.pokemon = pokemonDto
             binding.executePendingBindings()
         }
@@ -52,18 +53,18 @@ class PokemonAdapter : ListAdapter<PokemonDto, PokemonAdapter.PokemonViewHolder>
         holder.bindPokemon(getItem(position))
 }
 
-private class PokemonDiffCallback : DiffUtil.ItemCallback<PokemonDto>() {
+private class PokemonDiffCallback : DiffUtil.ItemCallback<Pokemon>() {
 
     override fun areItemsTheSame(
-        oldItem: PokemonDto,
-        newItem: PokemonDto
+        oldItem: Pokemon,
+        newItem: Pokemon
     ): Boolean {
         return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(
-        oldItem: PokemonDto,
-        newItem: PokemonDto
+        oldItem: Pokemon,
+        newItem: Pokemon
     ): Boolean {
         return oldItem.name == newItem.name
     }

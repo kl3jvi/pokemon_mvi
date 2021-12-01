@@ -16,8 +16,6 @@ data class PokemonInfoDto(
 ) : UIState() {
 
     fun getIdString(): String = String.format("#%03d", id)
-    fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
-    fun getHeightString(): String = String.format("%.1f M", height.toFloat() / 10)
 
     @JsonClass(generateAdapter = true)
     data class TypeResponse(
@@ -35,8 +33,8 @@ fun PokemonInfoDto.toPokemonInfo(): PokemonInfo {
     return PokemonInfo(
         id = getIdString(),
         name = name,
-        height = getHeightString(),
-        weight = getWeightString(),
+        height = height,
+        weight = weight,
         experience = experience,
         types = types
     )

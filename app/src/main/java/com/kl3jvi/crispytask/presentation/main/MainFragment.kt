@@ -6,11 +6,11 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.kl3jvi.crispytask.data.model.PokemonDto
-import com.kl3jvi.crispytask.data.model.PokemonResponseDto
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
+import com.kl3jvi.crispytask.domain.model.Pokemon
 import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
@@ -36,18 +36,30 @@ class MainFragment : Fragment() {
 
         onStates(viewModel) { state ->
             when (state) {
-                is PokemonResponseDto -> {
-                    val pokemonList = state.results
-                    showPokemons(pokemonList)
-                }
-                else -> {
-                    pokemonsAreLoading()
-                }
+                is PokemonListState -> showPokemons(state)
             }
         }
     }
 
-    private fun showPokemons(pokemonDtoList: List<PokemonDto>) {
+    private fun showPokemons(state: PokemonListState) {
+        when (state) {
+            is PokemonListState.PokemonsRetrieved -> {
+                displayPokemonList(state.pokemons)
+            }
+            is PokemonListState.PokemonsAreLoading -> {
+                pokemonsAreLoading()
+            }
+            is PokemonListState.PokemonsRetrievedError -> {
+                showToast(state.message)
+            }
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun displayPokemonList(pokemonDtoList: List<Pokemon>) {
         binding.apply {
             recyclerView.adapter = adapter
             progressBar.visibility = GONE
