@@ -1,7 +1,8 @@
 package com.kl3jvi.crispytask.data.network
 
-import com.kl3jvi.crispytask.data.model.PokemonInfo
-import com.kl3jvi.crispytask.data.model.PokemonResponse
+import com.kl3jvi.crispytask.data.model.PokemonDto
+import com.kl3jvi.crispytask.data.model.PokemonInfoDto
+import com.kl3jvi.crispytask.data.model.PokemonResponseDto
 import com.kl3jvi.crispytask.utils.Constants.POKEMON_INFO
 import com.kl3jvi.crispytask.utils.Constants.POKEMON_LIST
 import retrofit2.http.GET
@@ -14,10 +15,10 @@ interface PokemonService {
     suspend fun fetchPokemonList(
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0
-    ): PokemonResponse
+    ): List<PokemonDto>
 
     @GET(POKEMON_INFO)
     suspend fun fetchPokemonInfo(
         @Path("name") name: String
-    ): PokemonInfo
+    ): PokemonInfoDto
 }

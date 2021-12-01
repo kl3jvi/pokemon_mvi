@@ -6,16 +6,16 @@
     <data>
         <variable
             name="pokemonBind"
-            type="com.kl3jvi.crispytask.data.model.Pokemon" />
+            type="com.kl3jvi.crispytask.data.model.PokemonDto" />
         <variable
             name="pokemonDetails"
-            type="com.kl3jvi.crispytask.data.model.PokemonInfo" />
+            type="com.kl3jvi.crispytask.data.model.PokemonInfoDto" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.details.DetailsFragment">
+        tools:context=".presentation.details.DetailsFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"

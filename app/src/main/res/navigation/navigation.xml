@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.kl3jvi.crispytask.ui.main.MainFragment"
+        android:name="com.kl3jvi.crispytask.presentation.main.MainFragment"
         android:label="@string/home_label"
         tools:layout="@layout/main_fragment">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.kl3jvi.crispytask.ui.details.DetailsFragment"
+        android:name="com.kl3jvi.crispytask.presentation.details.DetailsFragment"
         android:label="@string/details_label"
         tools:layout="@layout/details_fragment">
         <action

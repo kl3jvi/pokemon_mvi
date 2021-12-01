@@ -2,8 +2,8 @@ package com.kl3jvi.crispytask.di
 
 
 import com.kl3jvi.crispytask.data.network.PokemonApiClient
-import com.kl3jvi.crispytask.data.repository.DetailsRepository
-import com.kl3jvi.crispytask.data.repository.MainRepository
+import com.kl3jvi.crispytask.data.repository.PokemonRepositoryImpl
+import com.kl3jvi.crispytask.domain.repository.PokemonRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,13 +16,8 @@ object RepositoryModule {
 
     @Provides
     @ViewModelScoped
-    fun provideMainRepository(pokemonApiClient: PokemonApiClient): MainRepository {
-        return MainRepository(pokemonApiClient)
+    fun provideMainRepository(pokemonApiClient: PokemonApiClient): PokemonRepository {
+        return PokemonRepositoryImpl(pokemonApiClient)
     }
 
-    @Provides
-    @ViewModelScoped
-    fun provideDetailsRepository(pokemonApiClient: PokemonApiClient): DetailsRepository {
-        return DetailsRepository(pokemonApiClient)
-    }
 }

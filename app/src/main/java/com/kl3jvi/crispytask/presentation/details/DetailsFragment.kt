@@ -1,6 +1,5 @@
-package com.kl3jvi.crispytask.ui.details
+package com.kl3jvi.crispytask.presentation.details
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
-import com.kl3jvi.crispytask.data.model.PokemonInfo
+import com.kl3jvi.crispytask.data.model.PokemonInfoDto
 import com.kl3jvi.crispytask.databinding.DetailsFragmentBinding
 import com.kl3jvi.crispytask.utils.Constants.getColor
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +38,7 @@ class DetailsFragment : Fragment() {
         viewModel.updatePokemonName(pokemon.name)
         onStates(viewModel) { state ->
             when (state) {
-                is PokemonInfo -> {
+                is PokemonInfoDto -> {
                     binding.apply {
                         pokemonDetails = state
                         pokemonBind = pokemon
@@ -53,8 +52,8 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun buildPowerList(pInfo: PokemonInfo) {
-        val powerList = pInfo.types
+    private fun buildPowerList(pInfoDto: PokemonInfoDto) {
+        val powerList = pInfoDto.types
         powerList.forEach {
             binding.chipGroup.removeAllViews()
             val chip = Chip(requireContext())

@@ -1,23 +1,24 @@
 package com.kl3jvi.crispytask.data.model
 
+import com.kl3jvi.crispytask.domain.model.PokemonInfo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import io.uniflow.core.flow.data.UIState
 
 @JsonClass(generateAdapter = true)
-data class PokemonInfo(
+data class PokemonInfoDto(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "height") val height: Int,
     @field:Json(name = "weight") val weight: Int,
     @field:Json(name = "base_experience") val experience: Int,
     @field:Json(name = "types") val types: List<TypeResponse>,
-): UIState() {
+) : UIState() {
 
     fun getIdString(): String = String.format("#%03d", id)
     fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
     fun getHeightString(): String = String.format("%.1f M", height.toFloat() / 10)
-    
+
     @JsonClass(generateAdapter = true)
     data class TypeResponse(
         @field:Json(name = "slot") val slot: Int,
@@ -28,5 +29,15 @@ data class PokemonInfo(
     data class Type(
         @field:Json(name = "name") val name: String
     )
+}
 
+fun PokemonInfoDto.toPokemonInfo(): PokemonInfo {
+    return PokemonInfo(
+        id = getIdString(),
+        name = name,
+        height = getHeightString(),
+        weight = getWeightString(),
+        experience = experience,
+        types = types
+    )
 }

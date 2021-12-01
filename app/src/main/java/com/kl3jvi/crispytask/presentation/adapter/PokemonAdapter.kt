@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.ui.adapter
+package com.kl3jvi.crispytask.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +7,12 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.kl3jvi.crispytask.data.model.Pokemon
+import com.kl3jvi.crispytask.data.model.PokemonDto
 import com.kl3jvi.crispytask.databinding.ItemPokemonBinding
-import com.kl3jvi.crispytask.ui.main.MainFragmentDirections
+import com.kl3jvi.crispytask.presentation.main.MainFragmentDirections
 
 
-class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
+class PokemonAdapter : ListAdapter<PokemonDto, PokemonAdapter.PokemonViewHolder>(
     PokemonDiffCallback()
 ) {
 
@@ -27,14 +27,14 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
             }
         }
 
-        private fun navigateToDetails(pokemon: Pokemon, view: View) {
+        private fun navigateToDetails(pokemonDto: PokemonDto, view: View) {
             val direction =
-                MainFragmentDirections.actionMainFragmentToDetailsFragment(pokemon)
+                MainFragmentDirections.actionMainFragmentToDetailsFragment(pokemonDto)
             view.findNavController().navigate(direction)
         }
 
-        fun bindPokemon(pokemon: Pokemon) {
-            binding.pokemon = pokemon
+        fun bindPokemon(pokemonDto: PokemonDto) {
+            binding.pokemon = pokemonDto
             binding.executePendingBindings()
         }
     }
@@ -52,18 +52,18 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
         holder.bindPokemon(getItem(position))
 }
 
-private class PokemonDiffCallback : DiffUtil.ItemCallback<Pokemon>() {
+private class PokemonDiffCallback : DiffUtil.ItemCallback<PokemonDto>() {
 
     override fun areItemsTheSame(
-        oldItem: Pokemon,
-        newItem: Pokemon
+        oldItem: PokemonDto,
+        newItem: PokemonDto
     ): Boolean {
         return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(
-        oldItem: Pokemon,
-        newItem: Pokemon
+        oldItem: PokemonDto,
+        newItem: PokemonDto
     ): Boolean {
         return oldItem.name == newItem.name
     }

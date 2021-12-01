@@ -1,4 +1,4 @@
-package com.kl3jvi.crispytask.ui.main
+package com.kl3jvi.crispytask.presentation.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.kl3jvi.crispytask.data.model.Pokemon
-import com.kl3jvi.crispytask.data.model.PokemonResponse
+import com.kl3jvi.crispytask.data.model.PokemonDto
+import com.kl3jvi.crispytask.data.model.PokemonResponseDto
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
-import com.kl3jvi.crispytask.ui.adapter.PokemonAdapter
+import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
 
@@ -36,7 +36,7 @@ class MainFragment : Fragment() {
 
         onStates(viewModel) { state ->
             when (state) {
-                is PokemonResponse -> {
+                is PokemonResponseDto -> {
                     val pokemonList = state.results
                     showPokemons(pokemonList)
                 }
@@ -47,11 +47,11 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun showPokemons(pokemonList: List<Pokemon>) {
+    private fun showPokemons(pokemonDtoList: List<PokemonDto>) {
         binding.apply {
             recyclerView.adapter = adapter
             progressBar.visibility = GONE
-            adapter.submitList(pokemonList)
+            adapter.submitList(pokemonDtoList)
         }
     }
 

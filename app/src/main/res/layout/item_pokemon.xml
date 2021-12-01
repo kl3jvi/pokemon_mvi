@@ -9,7 +9,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="pokemon"
-            type="com.kl3jvi.crispytask.data.model.Pokemon" />
+            type="com.kl3jvi.crispytask.data.model.PokemonDto" />
     </data>
 
 
