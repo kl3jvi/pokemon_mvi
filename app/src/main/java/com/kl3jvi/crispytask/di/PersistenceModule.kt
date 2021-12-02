@@ -33,7 +33,7 @@ object PersistenceModule {
         typeResponseConverter: TypeResponseConverter
     ): AppDatabase {
         return Room
-            .databaseBuilder(application, AppDatabase::class.java, "pokemon.db")
+            .databaseBuilder(application, AppDatabase::class.java, "pokemon_table")
             .fallbackToDestructiveMigration()
             .addTypeConverter(typeResponseConverter)
             .build()

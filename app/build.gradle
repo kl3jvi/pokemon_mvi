@@ -93,7 +93,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hiltAnnotationProcessor"
 
     // Room
-    def roomVersion = "2.3.0"
+    def roomVersion = '2.4.0-beta01'
     implementation "androidx.room:room-runtime:$roomVersion"
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"

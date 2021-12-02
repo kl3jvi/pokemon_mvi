@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun getPokemonList() = action {
-        getPokemonsUseCase().onEach { result ->
+        getPokemonsUseCase(2).onEach { result ->
             when (result) {
                 is ResponseState.Success -> setState {
                     PokemonListState.PokemonsRetrieved(pokemons = result.data ?: emptyList())

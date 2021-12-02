@@ -12,9 +12,9 @@ interface PokemonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPokemonList(pokemonList: List<PokemonDto>)
 
-    @Query("SELECT * FROM Pokemon WHERE page = :page_")
+    @Query("SELECT * FROM PokemonDto WHERE page = :page_")
     suspend fun getPokemonList(page_: Int): List<PokemonDto>
 
-    @Query("SELECT * FROM Pokemon WHERE page <= :page_")
+    @Query("SELECT * FROM PokemonDto WHERE page <= :page_")
     suspend fun getAllPokemonList(page_: Int): List<PokemonDto>
 }

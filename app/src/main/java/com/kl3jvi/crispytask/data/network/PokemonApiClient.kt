@@ -1,6 +1,5 @@
 package com.kl3jvi.crispytask.data.network
 
-import com.kl3jvi.crispytask.data.model.PokemonDto
 import com.kl3jvi.crispytask.data.model.PokemonInfoDto
 import com.kl3jvi.crispytask.data.model.PokemonResponseDto
 import javax.inject.Inject
@@ -8,10 +7,10 @@ import javax.inject.Inject
 class PokemonApiClient @Inject constructor(
     private val pokemonService: PokemonService
 ) {
-    suspend fun fetchPokemonList(): PokemonResponseDto =
+    suspend fun fetchPokemonList(page: Int): PokemonResponseDto =
         pokemonService.fetchPokemonList(
             limit = SIZE,
-            offset = SIZE
+            offset = page * SIZE
         )
 
     suspend fun fetchPokemonDetails(name: String): PokemonInfoDto =

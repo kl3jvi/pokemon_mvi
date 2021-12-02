@@ -1,12 +1,14 @@
 package com.kl3jvi.crispytask.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.kl3jvi.crispytask.domain.model.PokemonInfo
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-
+@Entity
 @JsonClass(generateAdapter = true)
 data class PokemonInfoDto(
-    @field:Json(name = "id") val id: Int,
+    @field:Json(name = "id") @PrimaryKey val id: Int,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "height") val height: Int,
     @field:Json(name = "weight") val weight: Int,
@@ -16,6 +18,7 @@ data class PokemonInfoDto(
 
     fun getIdString(): String = String.format("#%03d", id)
 
+    @Entity
     @JsonClass(generateAdapter = true)
     data class TypeResponseDto(
         @field:Json(name = "slot") val slot: Int,
@@ -29,6 +32,7 @@ data class PokemonInfoDto(
         )
     }
 
+    @Entity
     @JsonClass(generateAdapter = true)
     data class TypeDto(
         @field:Json(name = "name") val name: String

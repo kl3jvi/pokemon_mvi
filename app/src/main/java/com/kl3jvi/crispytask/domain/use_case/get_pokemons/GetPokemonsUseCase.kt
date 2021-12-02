@@ -16,10 +16,10 @@ class GetPokemonsUseCase @Inject constructor(
     private val repository: PokemonRepository,
     private val ioDispatcher:CoroutineDispatcher
 ) {
-    operator fun invoke(): Flow<ResponseState<List<Pokemon>>> = flow {
+    operator fun invoke(page:Int): Flow<ResponseState<List<Pokemon>>> = flow {
         try {
             emit(ResponseState.Loading<List<Pokemon>>())
-            val pokemons = repository.getPokemons().map { it.toPokemon() }
+            val pokemons = repository.getPokemons(page).map { it.toPokemon() }
             emit(ResponseState.Success<List<Pokemon>>(pokemons))
         } catch (e: HttpException) {
             emit(ResponseState.Error<List<Pokemon>>(e.localizedMessage ?: "An unexpected error occurred"))

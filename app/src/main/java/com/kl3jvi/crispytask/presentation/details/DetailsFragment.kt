@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.kl3jvi.crispytask.data.model.PokemonInfoDto
 import com.kl3jvi.crispytask.databinding.DetailsFragmentBinding
+import com.kl3jvi.crispytask.domain.model.PokemonInfo
 import com.kl3jvi.crispytask.utils.Constants.getColor
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
@@ -50,6 +51,9 @@ class DetailsFragment : Fragment() {
         when (state) {
             is PokemonDetailsState.PokemonRetrieved->{
                 binding.pokemonDetails = state.pokemon
+                state.pokemon?.let{ pokemonInfo->
+                    buildPowerList(pokemonInfo)
+                }
             }
             is PokemonDetailsState.PokemonIsLoading->{
 
@@ -60,7 +64,7 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun buildPowerList(pInfo: PokemonInfoDto) {
+    private fun buildPowerList(pInfo: PokemonInfo) {
         val powerList = pInfo.types
         powerList.forEach {
             binding.chipGroup.removeAllViews()
