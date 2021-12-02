@@ -23,6 +23,6 @@ fun PokemonDto.toPokemon(): Pokemon {
     return Pokemon(
         name = name,
         url = url,
-        imageUrl = getImageUrl()
+        image_Url = getImageUrl()
     )
 }

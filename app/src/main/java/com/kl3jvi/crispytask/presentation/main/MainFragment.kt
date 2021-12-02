@@ -50,7 +50,7 @@ class MainFragment : Fragment() {
                 pokemonsAreLoading()
             }
             is PokemonListState.PokemonsRetrievedError -> {
-                showToast(state.message)
+                showToast(state.error)
             }
         }
     }

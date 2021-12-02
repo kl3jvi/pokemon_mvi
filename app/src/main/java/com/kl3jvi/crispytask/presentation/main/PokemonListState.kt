@@ -5,6 +5,6 @@ import io.uniflow.core.flow.data.UIState
 
 open class PokemonListState : UIState() {
     object PokemonsAreLoading : PokemonListState()
-    data class PokemonsRetrieved(val pokemons: List<Pokemon> = emptyList()) : PokemonListState()
-    data class PokemonsRetrievedError(val message: String) : PokemonListState()
+    data class PokemonsRetrieved(val pokemons: List<Pokemon>) : PokemonListState()
+    data class PokemonsRetrievedError(val error: String) : PokemonListState()
 }

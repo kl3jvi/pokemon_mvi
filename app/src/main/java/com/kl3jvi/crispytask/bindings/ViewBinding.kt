@@ -8,7 +8,7 @@ import com.kl3jvi.crispytask.utils.GlideApp
 
 object ViewBinding {
     /**
-     * Iimage data biniding with GLIDE
+     * Image data binding with GLIDE
      */
     @JvmStatic
     @BindingAdapter("image", "placeholder")

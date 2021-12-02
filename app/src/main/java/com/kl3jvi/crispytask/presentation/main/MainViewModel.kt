@@ -3,7 +3,7 @@ package com.kl3jvi.crispytask.presentation.main
 
 import androidx.lifecycle.viewModelScope
 import com.kl3jvi.crispytask.domain.use_case.get_pokemons.GetPokemonsUseCase
-import com.kl3jvi.crispytask.utils.Response
+import com.kl3jvi.crispytask.utils.ResponseState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.uniflow.android.AndroidDataFlow
 import kotlinx.coroutines.flow.launchIn
@@ -23,17 +23,17 @@ class MainViewModel @Inject constructor(
     private fun getPokemonList() = action {
         getPokemonsUseCase().onEach { result ->
             when (result) {
-                is Response.Success -> setState {
-                    PokemonListState(
-                        pokemons = result.data ?: emptyList()
+                is ResponseState.Success -> setState {
+                    PokemonListState.PokemonsRetrieved(pokemons = result.data ?: emptyList())
+                }
+
+                is ResponseState.Error -> setState {
+                    PokemonListState.PokemonsRetrievedError(
+                        error = result.message ?: "An unexpected error occurred"
                     )
                 }
 
-                is Response.Error -> setState {
-                    PokemonListState(error = result.message ?: "An unexpected error occurred")
-                }
-
-                is Response.Loading -> setState { PokemonListState(isLoading = true) }
+                is ResponseState.Loading -> setState { PokemonListState.PokemonsAreLoading }
             }
         }.launchIn(viewModelScope)
     }

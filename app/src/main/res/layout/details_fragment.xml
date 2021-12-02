@@ -34,7 +34,7 @@
                 android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
-                app:image="@{pokemonBind.imageUrl}"
+                app:image="@{pokemonBind.image_Url}"
                 app:placeholder="@{@drawable/ic_no_image}" />
         </androidx.cardview.widget.CardView>
 
