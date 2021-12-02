@@ -1,8 +1,15 @@
 package com.kl3jvi.crispytask.bindings
 
 import android.graphics.drawable.Drawable
+import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.github.florent37.glidepalette.BitmapPalette
+import com.github.florent37.glidepalette.GlidePalette
 import com.kl3jvi.crispytask.R
 import com.kl3jvi.crispytask.utils.GlideApp
 
@@ -20,5 +27,32 @@ object ViewBinding {
         } else {
             image.setImageDrawable(placeHolder)
         }
+    }
+
+    /**
+     * GlidePalette data binding
+     */
+    @JvmStatic
+    @BindingAdapter("paletteImage", "paletteView")
+    fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView: View) {
+        val context = view.context
+        Glide.with(context)
+            .load(url)
+            .listener(
+                GlidePalette.with(url)
+                    .use(BitmapPalette.Profile.MUTED_LIGHT)
+                    .intoCallBack { palette ->
+                        val domain = palette?.dominantSwatch?.rgb
+                        if (domain != null) {
+                            paletteView.setBackgroundColor(domain)
+                            if (context is AppCompatActivity) {
+                                context.window.apply {
+                                    addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                                    statusBarColor = domain
+                                }
+                            }
+                        }
+                    }.crossfade(true)
+            ).into(view)
     }
 }

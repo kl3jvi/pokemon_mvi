@@ -4,7 +4,7 @@
     <string name="home_label">Pokemon List</string>
     <string name="name">Name</string>
     <string name="skills">Skills</string>
-    <string name="height">Height</string>
+    <string name="height">Height: %s</string>
     <string name="weight">Weight</string>
     <string name="defense">Defense</string>
     <string name="speed">Speed</string>
