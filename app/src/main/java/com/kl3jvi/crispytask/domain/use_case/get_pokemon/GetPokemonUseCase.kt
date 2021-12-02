@@ -20,8 +20,8 @@ class GetPokemonUseCase @Inject constructor(
     operator fun invoke(pokemonName: String): Flow<ResponseState<PokemonInfo>> = flow {
         try {
             emit(ResponseState.Loading<PokemonInfo>())
-            val coins = repository.getPokemonByName(pokemonName).toPokemonInfo()
-            emit(ResponseState.Success<PokemonInfo>(coins))
+            val pokemon = repository.getPokemonByName(pokemonName).toPokemonInfo()
+            emit(ResponseState.Success<PokemonInfo>(pokemon))
         } catch (e: HttpException) {
             emit(ResponseState.Error<PokemonInfo>(e.localizedMessage ?: "An unexpected error occurred"))
         } catch (e: IOException) {
