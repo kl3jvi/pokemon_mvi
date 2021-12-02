@@ -36,7 +36,7 @@ object ViewBinding {
      */
     @JvmStatic
     @BindingAdapter("paletteImage", "paletteView")
-    fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView: View) {
+    fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView: MaterialCardView) {
         val context = view.context
         Glide.with(context)
             .load(url)
@@ -46,7 +46,6 @@ object ViewBinding {
                     .intoCallBack { palette ->
                         val domain = palette?.dominantSwatch?.rgb
                         if (domain != null) {
-                            if(paletteView is MaterialCardView)
                             paletteView.setCardBackgroundColor(domain)
                         }
                     }.crossfade(true)
