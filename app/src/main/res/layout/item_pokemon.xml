@@ -29,8 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foreground="?attr/selectableItemBackground"
-            android:background="@color/card_background"
-            tools:ignore="UnusedAttribute">
+            android:background="@color/card_background">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image"

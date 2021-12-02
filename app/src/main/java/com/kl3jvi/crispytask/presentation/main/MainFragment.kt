@@ -32,7 +32,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = PokemonAdapter()
+
 
         onStates(viewModel) { state ->
             when (state) {
@@ -43,9 +43,8 @@ class MainFragment : Fragment() {
 
     private fun showPokemons(state: PokemonListState) {
         when (state) {
-            is PokemonListState.PokemonsRetrieved -> {
-                displayPokemonList(state.pokemons)
-            }
+            is PokemonListState.PokemonsRetrieved -> displayPokemonList(state.pokemons)
+
             is PokemonListState.PokemonsAreLoading -> {
                 pokemonsAreLoading()
             }
@@ -61,8 +60,10 @@ class MainFragment : Fragment() {
 
     private fun displayPokemonList(pokemonDtoList: List<Pokemon>) {
         binding.apply {
+            adapter = PokemonAdapter()
             recyclerView.adapter = adapter
             progressBar.visibility = GONE
+            recyclerView.visibility = VISIBLE
             adapter.submitList(pokemonDtoList)
         }
     }

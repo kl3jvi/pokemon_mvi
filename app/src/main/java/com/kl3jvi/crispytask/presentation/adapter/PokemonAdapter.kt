@@ -34,11 +34,10 @@ class PokemonAdapter : ListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(
         }
 
         fun bindPokemon(pokemon: Pokemon) {
-            binding.apply{
-
+            binding.apply {
+                pokemonObj = pokemon
+                executePendingBindings()
             }
-            binding.pokemonObj = pokemon
-            binding.executePendingBindings()
         }
     }
 
