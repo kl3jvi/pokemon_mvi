@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @JsonClass(generateAdapter = true)
 data class PokemonDto(
+    var page: Int = 0,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "url") val url: String
 ) : Parcelable {

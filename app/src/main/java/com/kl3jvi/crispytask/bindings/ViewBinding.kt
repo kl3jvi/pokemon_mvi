@@ -6,10 +6,12 @@ import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
+import com.google.android.material.card.MaterialCardView
 import com.kl3jvi.crispytask.R
 import com.kl3jvi.crispytask.utils.GlideApp
 
@@ -44,13 +46,8 @@ object ViewBinding {
                     .intoCallBack { palette ->
                         val domain = palette?.dominantSwatch?.rgb
                         if (domain != null) {
-                            paletteView.setBackgroundColor(domain)
-                            if (context is AppCompatActivity) {
-                                context.window.apply {
-                                    addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                                    statusBarColor = domain
-                                }
-                            }
+                            if(paletteView is MaterialCardView)
+                            paletteView.setCardBackgroundColor(domain)
                         }
                     }.crossfade(true)
             ).into(view)
