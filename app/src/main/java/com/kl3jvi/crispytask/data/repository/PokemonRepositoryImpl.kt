@@ -28,7 +28,7 @@ class PokemonRepositoryImpl @Inject constructor(
             }
         } else {
             withContext(ioDispatcher) {
-                (pokemonDao.getAllPokemonList(page))
+                pokemonDao.getAllPokemonList(page)
             }
         }
     }

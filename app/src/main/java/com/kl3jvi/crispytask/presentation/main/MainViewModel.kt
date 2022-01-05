@@ -23,14 +23,17 @@ class MainViewModel @Inject constructor(
     init {
         getPokemonList()
     }
+
     var isLoading: Boolean = false
 
     private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
+
     @ExperimentalCoroutinesApi
     private fun getPokemonList() = action {
         pokemonFetchingIndex.flatMapLatest { page ->
             getPokemonsUseCase(
-                page, onStart = { isLoading = true },
+                page,
+                onStart = { isLoading = true },
                 onComplete = { isLoading = false },
             ).onEach { result ->
                 when (result) {

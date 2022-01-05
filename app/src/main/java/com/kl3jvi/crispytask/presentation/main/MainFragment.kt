@@ -1,38 +1,33 @@
 package com.kl3jvi.crispytask.presentation.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.kl3jvi.crispytask.R
 import com.kl3jvi.crispytask.databinding.MainFragmentBinding
 import com.kl3jvi.crispytask.domain.model.Pokemon
 import com.kl3jvi.crispytask.presentation.adapter.PokemonAdapter
+import com.kl3jvi.crispytask.presentation.base.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.uniflow.android.livedata.onStates
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class MainFragment : BindingFragment<MainFragmentBinding>(R.layout.main_fragment) {
 
-    private var _binding: MainFragmentBinding? = null
-    private val binding get() = _binding!!
+
     private val viewModel: MainViewModel by viewModels()
     private lateinit var adapter: PokemonAdapter
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = MainFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.vm = viewModel
+        binding {
+            vm = viewModel
+        }
+
 
         onStates(viewModel) { state ->
             when (state) {
@@ -59,7 +54,7 @@ class MainFragment : Fragment() {
     }
 
     private fun displayPokemonList(pokemonDtoList: List<Pokemon>) {
-        binding.apply {
+        binding {
             adapter = PokemonAdapter()
             recyclerView.adapter = adapter
             progressBar.visibility = GONE
@@ -69,7 +64,7 @@ class MainFragment : Fragment() {
     }
 
     private fun pokemonsAreLoading() {
-        binding.apply {
+        binding {
             recyclerView.visibility = GONE
             progressBar.visibility = VISIBLE
         }
