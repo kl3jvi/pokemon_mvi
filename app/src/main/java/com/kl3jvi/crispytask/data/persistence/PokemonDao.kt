@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.kl3jvi.crispytask.data.model.PokemonDto
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
@@ -12,9 +13,7 @@ interface PokemonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPokemonList(pokemonList: List<PokemonDto>)
 
-    @Query("SELECT * FROM PokemonDto WHERE page = :page_")
-    suspend fun getPokemonList(page_: Int): List<PokemonDto>
+    @Query("SELECT * FROM PokemonDto")
+    suspend fun getPokemonList(): List<PokemonDto>
 
-    @Query("SELECT * FROM PokemonDto WHERE page <= :page_")
-    suspend fun getAllPokemonList(page_: Int): List<PokemonDto>
 }

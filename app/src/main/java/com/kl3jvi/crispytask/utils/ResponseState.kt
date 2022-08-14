@@ -1,9 +1,22 @@
 package com.kl3jvi.crispytask.utils
 
-sealed class ResponseState<T>(val data: T? = null, val message: String? = null) {
-    class Success<T>(data: T?) : ResponseState<T>(data)
-    class Error<T>(message: String?) : ResponseState<T>(message = message)
-    class Loading<T>(data: T? = null) : ResponseState<T>(data)
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
+
+sealed interface Result<out T> {
+    data class Success<T>(val data: T) : Result<T>
+    data class Error(val exception: Throwable?) : Result<Nothing>
+    object Loading : Result<Nothing>
 }
 
-
+fun <T> Flow<T>.asResult(): Flow<Result<T>> {
+    return map<T, Result<T>> {
+        Result.Success(it)
+    }.onStart {
+        emit(Result.Loading)
+    }.catch { throwableType ->
+        emit(Result.Error(throwableType)) // Because we dont have internet connection we assume that we are getting an error on serialization
+    }
+}

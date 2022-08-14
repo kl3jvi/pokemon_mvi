@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.kl3jvi.crispytask.R
@@ -13,7 +16,7 @@ import com.kl3jvi.crispytask.domain.model.PokemonInfo
 import com.kl3jvi.crispytask.presentation.base.BindingFragment
 import com.kl3jvi.crispytask.utils.Constants.getColor
 import dagger.hilt.android.AndroidEntryPoint
-import io.uniflow.android.livedata.onStates
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsFragment : BindingFragment<DetailsFragmentBinding>(R.layout.details_fragment) {
@@ -28,28 +31,23 @@ class DetailsFragment : BindingFragment<DetailsFragmentBinding>(R.layout.details
         binding { pokemonBind = pokemon }
 
         viewModel.updatePokemonName(pokemon.name)
-        onStates(viewModel) { state ->
-            when (state) {
-                is PokemonDetailsState -> showPokemon(state)
-            }
-        }
-    }
 
-
-    private fun showPokemon(state: PokemonDetailsState) {
-        when (state) {
-            is PokemonDetailsState.PokemonRetrieved -> {
-                binding { pokemonDetails = state.pokemon }
-                state.pokemon?.let { pokemonInfo ->
-                    buildPowerList(pokemonInfo)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.pokemonUiState.collect { state ->
+                    when (state) {
+                        is PokemonUiState.Error -> Toast.makeText(
+                            requireContext(),
+                            "Error Occurred",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        is PokemonUiState.Loading -> {}
+                        is PokemonUiState.Success -> {
+                            binding { pokemonDetails = state.data }
+                            buildPowerList(state.data)
+                        }
+                    }
                 }
-            }
-            is PokemonDetailsState.PokemonIsLoading -> {
-
-            }
-            is PokemonDetailsState.PokemonRetrievedError -> {
-                Toast.makeText(requireContext(), "Error Retrieving Details", Toast.LENGTH_SHORT)
-                    .show()
             }
         }
     }
